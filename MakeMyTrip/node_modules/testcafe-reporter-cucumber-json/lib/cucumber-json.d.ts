@@ -1,0 +1,38 @@
+import { CucumberJsonReportInterface, FeatureReport, Scenario, Step } from './cucumber-json-interfaces';
+import { TestRunInfo } from './reporter-interface';
+export declare class CucumberJsonReport implements CucumberJsonReportInterface {
+    private _startTime;
+    private _endTime;
+    private _userAgents;
+    private _testCount;
+    private _passed;
+    private _warnings;
+    private _features;
+    private _currentFeature;
+    private _currentScenario;
+    private _currentStep;
+    private _currentPlatform;
+    private _currentApp;
+    private _currentBrowser;
+    private _currentDevice;
+    private _storageFolder;
+    get currentFeature(): FeatureReport | undefined;
+    set currentFeature(v: FeatureReport | undefined);
+    get currentScenario(): Scenario | undefined;
+    set currentScenario(v: Scenario | undefined);
+    get currentStep(): Step | undefined;
+    set currentStep(v: Step | undefined);
+    initializeWith: (startTime: Date, userAgents: string[], testCount: number) => CucumberJsonReport;
+    finalizeWith: (endTime: Date, passed: number, warnings: string[]) => CucumberJsonReport;
+    toJson: () => string;
+    writeFile: () => void;
+    toInfo: () => string;
+    createFeature: (name: string, path: string) => CucumberJsonReportInterface;
+    createScenario: (name: string, testRunInfo: TestRunInfo) => CucumberJsonReportInterface;
+    withError: (error: string | undefined) => CucumberJsonReportInterface;
+    withScreenshots: (paths: string[] | undefined) => CucumberJsonReportInterface;
+    private createDefaultStep;
+    private getScenarioIdFrom;
+    private getFeatureIdFrom;
+    private addTagsToCurrentFeature;
+}

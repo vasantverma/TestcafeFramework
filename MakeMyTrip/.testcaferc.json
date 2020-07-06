@@ -1,0 +1,8 @@
+{
+    "screenshots": 
+    {
+        "pathPattern": "${DATE}_${TIME}/test-${TEST_INDEX}/${USERAGENT}/${FIXTURE}-${FILE_INDEX}.png",
+        "takeOnFails": true
+    }
+    
+}
