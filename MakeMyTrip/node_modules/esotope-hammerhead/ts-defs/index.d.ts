@@ -44,6 +44,7 @@ export enum Syntax {
     LabeledStatement         = 'LabeledStatement',
     LogicalExpression        = 'LogicalExpression',
     MemberExpression         = 'MemberExpression',
+    MetaProperty             = 'MetaProperty',
     MethodDefinition         = 'MethodDefinition',
     ModuleDeclaration        = 'ModuleDeclaration',
     NewExpression            = 'NewExpression',

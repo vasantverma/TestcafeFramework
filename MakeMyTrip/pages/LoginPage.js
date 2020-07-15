@@ -13,6 +13,8 @@ class LoginPage
         this.continueInput=Selector('button[data-cy="continueBtn"]')
         this.loginBtn=Selector('button[data-cy="login"]')
         this.infoPopup=Selector('div.autopop__wrap')
+        this.infoPopup_EmailLogin=Selector('.rightArrow.pushRight')
+        this.closeVerifyPhonePopup=Selector('span[data-cy="modalClose"]')
 
         this.loggedInUsername=Selector('p[data-cy="loggedInUser"]')
     }
@@ -25,19 +27,28 @@ class LoginPage
         await t.click(this.continueInput)
         await t.typeText(this.passwordInput,userPassword,{paste:true,replace:true})
         await t.click(this.loginBtn)
+        await t.click(this.closeVerifyPhonePopup)
     }
 
     async openLoginPrompt()
     {
-        if(this.infoPopup.visible)
+        let flag=await this.infoPopup.exists
+        try
         {
-            await t.doubleClick(this.loginPrompt)
+            if(flag)
+           {
+             await t.click(this.infoPopup_EmailLogin)
+           }
+            else
+           {
+             await t.click(this.loginPrompt)
+           }
         }
-        else
+        catch(err)
         {
-            await t.click(this.loginPrompt)
-        }
-        
-    }
+                await t.click(this.loginPrompt)
+        }   
+    } 
 }
+
 export default LoginPage

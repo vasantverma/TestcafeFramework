@@ -96,6 +96,7 @@ var Syntax = {
     LabeledStatement:         'LabeledStatement',
     LogicalExpression:        'LogicalExpression',
     MemberExpression:         'MemberExpression',
+    MetaProperty:             'MetaProperty',
     MethodDefinition:         'MethodDefinition',
     ModuleDeclaration:        'ModuleDeclaration',
     NewExpression:            'NewExpression',
@@ -1405,6 +1406,21 @@ var ExprRawGen = {
 
         _.js += exprJs + _.optSpace;
         StmtGen[$body.type]($body, Preset.s2);
+    },
+
+    MetaProperty: function generateMetaProperty ($expr, settings) {
+        var $meta        = $expr.meta,
+            $property    = $expr.property,
+            parenthesize = Precedence.Member < settings.precedence;
+
+        if (parenthesize)
+            _.js += '(';
+
+        _.js += (typeof $meta === "string" ? $meta : $meta.name) +
+            '.' + (typeof $property === "string" ? $property : $property.name);
+
+        if (parenthesize)
+            _.js += ')';
     },
 
     MethodDefinition: function generateMethodDefinition ($expr) {

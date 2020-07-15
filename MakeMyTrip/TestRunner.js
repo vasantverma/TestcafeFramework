@@ -17,7 +17,7 @@ createTestCafe()
         ])
 
         //configure the test runner to run tests in the specified browsers
-        .browsers(['chrome'])
+        .browsers(['browserstack:Chrome@83.0:Windows 10'])
         .reporter('cucumber-json')
         .run({
 

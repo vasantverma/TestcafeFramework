@@ -18,6 +18,6 @@ fixture `LoginPageTest`
        });
 
    test('Verify that user is on Search flight page after login',async t =>{
-        await t.expect(loginPage.loggedInUsername.innerText).eql('Hey'+config.firstname)
-        await t.takeScreenshot({fullPage:true})
+        await t.expect(loginPage.loggedInUsername.innerText).contains(config.firstname)
+        await t.takeScreenshot()
    })
